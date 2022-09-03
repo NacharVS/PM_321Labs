@@ -1,0 +1,17 @@
+﻿using Warcraft_3;
+Peasant peasant = new Peasant();
+Footman footman = new Footman();
+Mage mage = new Mage();
+Peasant.Mining();
+Peasant.Build();
+Peasant.Cancel();
+mage.Attack(footman);
+mage.Attack(footman);
+mage.Attack(footman);
+mage.Attack(footman);
+mage.Attack(footman);
+mage.Attack(footman);
+footman.Attack(mage);
+footman.Attack(mage);
+footman.Attack(mage);
+footman.Attack(mage);
