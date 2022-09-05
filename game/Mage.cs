@@ -8,7 +8,7 @@ class Mage : Unit
 {
     protected int mana;
     const int manaWaste = 15;
-    const int manaDamage = 50;
+    const int manaDamage = 40;
     const int manaHeal = 10;
 
     public Mage(int health, int walkingSpeed, int cost, int mana, int damage, string name) : base(health, walkingSpeed, cost, damage, name)
@@ -16,12 +16,12 @@ class Mage : Unit
         this.mana = mana;
     }
 
-    public Mage() : base(100, 30, 150, 40, "Mage")
+    public Mage() : base(100, 20, 180, 25, "Mage")
     {
         mana = 100;
     }
 
-    public void AttackFireBoal(Unit unit)
+    public void AttackFireBall(Unit unit)
     {
         if (mana - manaWaste >= 0)
         {
@@ -33,7 +33,7 @@ class Mage : Unit
         }
     }
 
-    public void AttackFireBoal(Footmen footmen)
+    public void AttackFireBall(Footman footmen)
     {
         if (mana - manaWaste >= 0)
         {
@@ -43,16 +43,6 @@ class Mage : Unit
             mana -= manaWaste;
             damage = origDamag;
         }
-    }
-
-    public override void Attack(Unit unit)
-    {
-        base.Attack(unit);
-    }
-
-    public override void Attack(Footmen footmen)
-    {
-        base.Attack(footmen);
     }
 
     public void TargetHeal(Unit unit)

@@ -11,7 +11,7 @@ class Pessant : Unit
 
     }
 
-    public Pessant() : base(30, 10, 40, 0, "LilNasX")
+    public Pessant() : base(30, 10, 40, 0, "Pessant")
     {
 
     }

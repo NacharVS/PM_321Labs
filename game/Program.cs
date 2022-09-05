@@ -1,23 +1,19 @@
-﻿/*var a = new Mage();
+﻿
+var a = new Footman();
 var b = new Mage();
-a.AttackFireBoal(b);
-a.Attack(b);
-a.Attack(b);
-a.TargetHeal(b);*/
+var c = new Archer();
+var d = new Barrack();
 
-var a = new Footmen(100, 30, 150, 100, 20, "Footman");
-var b = new Mage(100, 30, 150, 150, 30, "Mag");
-b.AttackFireBoal(a);
-b.Attack(a);
-b.AttackFireBoal(a);
+d.UpgradeDamage();
+d.UpgradeDamage();
+d.UpgradeDamage();
+d.UpgradeDamage();
 
-a.Attack(b);
-a.Attack(b);
-
-b.TargetHeal(a);
-b.TargetHeal(a);
-
-b.AttackFireBoal(a);
-b.AttackFireBoal(a);
+b.AttackFireBall(a);
+b.AttackFireBall(a);
+b.AttackFireBall(a);
+b.AttackFireBall(a);
+b.AttackFireBall(a);
 
 a.getInfo();
+

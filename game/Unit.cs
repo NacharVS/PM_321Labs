@@ -13,7 +13,9 @@ abstract class Unit
     protected bool isLive;
     protected string name;
     protected int maxHp;
-
+    protected int lvl;
+    public static List<Unit> list = new List<Unit>();
+    
     public Unit(int health, int walkingSpeed, int cost, int damage, string name)
     {
         this.health = health;
@@ -23,6 +25,8 @@ abstract class Unit
         isLive = true;
         this.name = name;
         maxHp = health;
+        lvl = 1;
+        list.Add(this);
     }
 
     public virtual void Attack(Unit unit)
@@ -45,7 +49,7 @@ abstract class Unit
         Console.WriteLine("the attack failed");
     }
 
-    public virtual void Attack(Footmen footmen)
+    public virtual void Attack(Footman footmen)
     {
         if (isLive && footmen.isLive)
         {
@@ -73,6 +77,8 @@ abstract class Unit
         Console.WriteLine("the attack failed");
     }
 
+    //Дописать атаку на строения
+
     protected void Heal(Unit unit, int manaHeal)
     {
         if (unit.health + manaHeal <= unit.maxHp)
@@ -90,6 +96,44 @@ abstract class Unit
     public bool getIsLive()
     {
         return isLive;
+    }
+
+    public void setIsLive(bool newIsLive)
+    {
+        isLive = newIsLive;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public void setHealth(int newHealth)
+    {
+        if (newHealth > 0)
+        {
+            health = newHealth;
+        }
+        else
+        {
+            health = 0;
+            isLive = false;
+        }    
+    }
+
+    public string getName()
+    {
+        return name;
+    }
+
+    public int getDamage()
+    {
+        return damage;
+    }
+
+    public virtual void setDamage(int newDamage)
+    {
+        damage = newDamage;
     }
 
     public void Move()
