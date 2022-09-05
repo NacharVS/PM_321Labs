@@ -145,6 +145,37 @@ namespace warcraft
             }
         }
 
+        public void TargetHeal(Archer healedPlayer)
+        {
+            if (healedPlayer.isLive && this.isLive)
+            {
+                if (this.mane >= 15 && Archer.Health >= healedPlayer.health + 15)
+                {
+                    this.mane -= 15;
+                    healedPlayer.health += 15;
+                }
+                else if (this.mane >= 15 && Archer.Health < healedPlayer.health + 15)
+                {
+                    this.mane -= Archer.Health - healedPlayer.health;
+                    healedPlayer.health = Archer.Health;
+                }
+                else if (this.mane < 15 && Archer.Health >= healedPlayer.health + this.mane)
+                {
+                    healedPlayer.health += this.mane;
+                    this.mane = 0;
+                }
+                else if (this.mane < 15 && Archer.Health < healedPlayer.health + this.mane)
+                {
+                    this.mane = Archer.Health - healedPlayer.health;
+                    healedPlayer.health = Archer.Health;
+                }
+                Console.WriteLine($"лечущий - Mage");
+                this.GetInfo();
+                Console.WriteLine($"лечимый - Pessant");
+                healedPlayer.GetInfo();
+            }
+        }
+
         public override void Attack(Unit attackedPlayer)
         {
             if (this.mane >= 10 && this.isLive)
