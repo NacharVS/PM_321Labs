@@ -8,13 +8,15 @@ namespace warcraft
 {
     class Archer : Unit
     {
+        public static List<Archer> Archers = new List<Archer>();
+
         public const int Health = 55;
         private const int WalkedSpeed = 35;
         private const int Cost = 225;
         private const int Damage = 12;
         private const int ArrowCount = 5;
 
-        int arrowCount = ArrowCount;
+        public int arrowCount = ArrowCount + BlackSmith.upgradeBow;
 
         public Archer() : base(Health, WalkedSpeed, Cost, Damage)
         {
@@ -26,6 +28,7 @@ namespace warcraft
             else
             {
                 resource -= Cost;
+                Archers.Add(this);
             }
         }
 

@@ -10,15 +10,20 @@ namespace warcraft
     {
         const int cost = 400;
         bool isWorking;
-        static int upgradeDamage;
-        static int upgradeArmor;
-        static int upgradeBow;
+        public static int upgradeDamage { get { return upgradeDamage; } private set { upgradeDamage = value; } }
+        public static int upgradeArmor { get { return upgradeArmor; } private set { upgradeArmor = value; } }
+        public static int upgradeBow { get { return upgradeBow; } private set { upgradeBow = value; } }
 
         public BlackSmith()
         {
-            if (Unit.resource > cost)
+            if (Unit.resource < cost)
             {
-                isWorking = true;
+                Console.WriteLine("Не хватило денег");
+            }
+            else
+            {
+                Unit.resource -= cost;
+                this.isWorking = true;
             }
         }
 
@@ -27,6 +32,10 @@ namespace warcraft
             if (isWorking && upgradeDamage < 3)
             {
                 ++upgradeDamage;
+                foreach (Unit unit in Unit.Units)
+                {
+                    unit.damage += 5;
+                }
             }
         }
 
@@ -35,6 +44,10 @@ namespace warcraft
             if (isWorking && upgradeArmor < 3)
             {
                 ++upgradeArmor;
+                foreach (Footman footman in Footman.Footmans)
+                {
+                    footman.armor += 5;
+                }
             }
         }
 
@@ -43,6 +56,10 @@ namespace warcraft
             if (isWorking && upgradeBow < 3)
             {
                 ++upgradeBow;
+                foreach (Archer archer in Archer.Archers)
+                {
+                    ++archer.arrowCount;
+                }
             }
         }
     }

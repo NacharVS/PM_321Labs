@@ -8,11 +8,13 @@ namespace warcraft
 {
     abstract class Unit
     {
+        public static List<Unit> Units = new List<Unit>();
+
         public static int resource = 2000;
         public int health;
         int walkedSpeed;
         int cost;
-        protected int damage;
+        public int damage;
         public bool isLive;
 
         public Unit(int health, int walkedSpeed, int cost, int damage)
@@ -20,8 +22,9 @@ namespace warcraft
             this.health = health;
             this.walkedSpeed = walkedSpeed;
             this.cost = cost;
-            this.damage = damage;
+            this.damage = damage + 5*BlackSmith.upgradeDamage;
             this.isLive = true;
+            Units.Add(this);
         }
 
         public void Move()

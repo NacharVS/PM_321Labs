@@ -8,13 +8,15 @@ namespace warcraft
 {
     class Footman : Unit
     {
+        public static List<Footman> Footmans = new List<Footman>();
+
         public const int Health = 60;
         private const int WalkedSpeed = 40;
         private const int Cost = 250;
         private const int Damage = 10;
         private const int Armor = 40;
 
-        public int armor = Armor;
+        public int armor = Armor + 5*BlackSmith.upgradeArmor;
         public Footman() : base(Health, WalkedSpeed, Cost, Damage)
         {
             if (resource < Cost)
@@ -25,6 +27,7 @@ namespace warcraft
             else
             {
                 resource -= Cost;
+                Footmans.Add(this);
             }
         }
 
