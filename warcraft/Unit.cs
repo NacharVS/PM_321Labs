@@ -8,7 +8,7 @@ namespace warcraft
 {
     abstract class Unit
     {
-        protected static int resource = 2000;
+        public static int resource = 2000;
         public int health;
         int walkedSpeed;
         int cost;
