@@ -8,7 +8,9 @@ namespace warcraft
 {
     abstract class Unit
     {
-        public static List<Unit> Units = new List<Unit>();
+        public static List<Unit> Units = new List<Unit>(); 
+        public delegate void GetDamageDelegate(int Damage);
+        public event GetDamageDelegate GetDamageEvents;
 
         public static int resource = 2000;
         public int health;
@@ -25,6 +27,7 @@ namespace warcraft
             this.damage = damage + 5*BlackSmith.upgradeDamage;
             this.isLive = true;
             Units.Add(this);
+            GetDamageEvents += GetDamage;
         }
 
         public void Move()
@@ -32,12 +35,20 @@ namespace warcraft
 
         }
 
+        static void GetDamage(int Damage)
+        {
+            Console.WriteLine($"Получено урона - {Damage}");
+        }
+
         public virtual void Attack(Unit attackedPlayer)
         {
             if (attackedPlayer.isLive && this.isLive)
             {
                 if (attackedPlayer.health - this.damage > 0)
+                {
                     attackedPlayer.health -= this.damage;
+                    GetDamageEvents?.Invoke(this.damage);
+                }
                 else
                 {
                     attackedPlayer.health = 0;
@@ -61,9 +72,13 @@ namespace warcraft
                         int tmp = this.damage - attackedPlayer.armor;
                         attackedPlayer.armor = 0;
                         attackedPlayer.HealthRe -= tmp;
+                        GetDamageEvents?.Invoke(this.damage);
                     }
                     else
+                    {
                         attackedPlayer.armor -= this.damage;
+                        GetDamageEvents?.Invoke(this.damage);
+                    }
                 }
                 else
                 {
