@@ -14,6 +14,9 @@ namespace warcraft
         private const int Damage = 15;
         private const int Mane = 100;
 
+        public delegate void GetHealDelegate(int Damage);
+        public event GetHealDelegate GetHealEvents;
+
         int mane = Mane;
         public Mage() : base(Health, WalkedSpeed, Cost, Damage)
         {
@@ -25,7 +28,13 @@ namespace warcraft
             else
             {
                 resource -= Cost;
+                GetHealEvents += Heal;
             }
+        }
+
+        static void Heal(int heal)
+        {
+            Console.WriteLine($"Восстановлено хп - {heal}");
         }
 
         public void CastFireBall(Unit attackedPlayer)
@@ -58,20 +67,24 @@ namespace warcraft
                 {
                     this.mane -= 15;
                     healedPlayer.health += 15;
+                    GetHealEvents?.Invoke(15);
                 }
                 else if (this.mane >= 15 && Mage.Health < healedPlayer.health + 15)
                 {
                     this.mane -= Mage.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Mage.Health - healedPlayer.health);
                     healedPlayer.health = Mage.Health;
                 }
                 else if (this.mane < 15 && Mage.Health >= healedPlayer.health + this.mane)
                 {
                     healedPlayer.health += this.mane;
+                    GetHealEvents?.Invoke(this.mane);
                     this.mane = 0;
                 }
                 else if (this.mane < 15 && Mage.Health < healedPlayer.health + this.mane)
                 {
-                    this.mane = Mage.Health - healedPlayer.health;
+                    this.mane -= Mage.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Mage.Health - healedPlayer.health);
                     healedPlayer.health = Mage.Health;
                 }
                 Console.WriteLine($"лечущий - Mage");
@@ -88,23 +101,27 @@ namespace warcraft
                 {
                     this.mane -= 15;
                     healedPlayer.health += 15;
+                    GetHealEvents?.Invoke(15);
                     healedPlayer.Rage();
                 }
                 else if (this.mane >= 15 && Footman.Health < healedPlayer.health + 15)
                 {
                     this.mane -= Footman.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Footman.Health - healedPlayer.health);
                     healedPlayer.health = Footman.Health;
                     healedPlayer.Rage();
                 }
                 else if (this.mane < 15 && Footman.Health >= healedPlayer.health + this.mane)
                 {
                     healedPlayer.health += this.mane;
+                    GetHealEvents?.Invoke(this.mane);
                     this.mane = 0;
                     healedPlayer.Rage();
                 }
                 else if (this.mane < 15 && Footman.Health < healedPlayer.health + this.mane)
                 {
-                    this.mane = Footman.Health - healedPlayer.health;
+                    this.mane -= Footman.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Footman.Health - healedPlayer.health);
                     healedPlayer.health = Footman.Health;
                     healedPlayer.Rage();
                 }
@@ -122,20 +139,24 @@ namespace warcraft
                 {
                     this.mane -= 15;
                     healedPlayer.health += 15;
+                    GetHealEvents?.Invoke(15);
                 }
                 else if (this.mane >= 15 && Pessant.Health < healedPlayer.health + 15)
                 {
                     this.mane -= Pessant.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Pessant.Health - healedPlayer.health);
                     healedPlayer.health = Pessant.Health;
                 }
                 else if (this.mane < 15 && Pessant.Health >= healedPlayer.health + this.mane)
                 {
                     healedPlayer.health += this.mane;
+                    GetHealEvents?.Invoke(this.mane);
                     this.mane = 0;
                 }
                 else if (this.mane < 15 && Pessant.Health < healedPlayer.health + this.mane)
                 {
-                    this.mane = Pessant.Health - healedPlayer.health;
+                    this.mane -= Pessant.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Pessant.Health - healedPlayer.health);
                     healedPlayer.health = Pessant.Health;
                 }
                 Console.WriteLine($"лечущий - Mage");
@@ -153,20 +174,24 @@ namespace warcraft
                 {
                     this.mane -= 15;
                     healedPlayer.health += 15;
+                    GetHealEvents?.Invoke(15);
                 }
                 else if (this.mane >= 15 && Archer.Health < healedPlayer.health + 15)
                 {
                     this.mane -= Archer.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Archer.Health - healedPlayer.health);
                     healedPlayer.health = Archer.Health;
                 }
                 else if (this.mane < 15 && Archer.Health >= healedPlayer.health + this.mane)
                 {
                     healedPlayer.health += this.mane;
+                    GetHealEvents?.Invoke(this.mane);
                     this.mane = 0;
                 }
                 else if (this.mane < 15 && Archer.Health < healedPlayer.health + this.mane)
                 {
                     this.mane = Archer.Health - healedPlayer.health;
+                    GetHealEvents?.Invoke(Archer.Health - healedPlayer.health);
                     healedPlayer.health = Archer.Health;
                 }
                 Console.WriteLine($"лечущий - Mage");
