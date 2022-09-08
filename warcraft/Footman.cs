@@ -18,6 +18,17 @@ namespace warcraft
         private const int Armor = 40;
 
         public int armor = Armor + 5*BlackSmith.upgradeArmor;
+
+        public int HealthRe
+        {
+            get { return this.health; }
+            set
+            {
+                this.health = value;
+                HealthChangedEvent?.Invoke();
+
+            }
+        }
         public Footman() : base(Health, WalkedSpeed, Cost, Damage)
         {
             if (resource < Cost)
@@ -29,6 +40,7 @@ namespace warcraft
             {
                 resource -= Cost;
                 Footmans.Add(this);
+                HealthChangedEvent += Rage;
             }
         }
 

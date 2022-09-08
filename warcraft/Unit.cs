@@ -60,8 +60,7 @@ namespace warcraft
                     {
                         int tmp = this.damage - attackedPlayer.armor;
                         attackedPlayer.armor = 0;
-                        attackedPlayer.health -= tmp;
-                        attackedPlayer.Rage();
+                        attackedPlayer.HealthRe -= tmp;
                     }
                     else
                         attackedPlayer.armor -= this.damage;
