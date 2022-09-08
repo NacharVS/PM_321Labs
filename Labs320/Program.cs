@@ -2,9 +2,8 @@
 using Labs320;
 
 TestClass unit = new TestClass(100);
+unit.HealthChangedEvent += InfoExtended;
 
-unit.HealthChangedEvent += Rage;
-unit.HealthChangedEvent += Adrenaline;
 
 
 unit.TakeDamage(20);
@@ -13,6 +12,15 @@ unit.TakeDamage(15);
 unit.TakeDamage(30);
 
 
+static void Info(int value)
+{
+    Console.WriteLine($"Health Value - {value}");
+}
+
+static void InfoExtended(int value, int val2)
+{
+    Console.WriteLine($"Health Value - {value} Max - {val2}");
+}
 
 static void Rage()
 {
