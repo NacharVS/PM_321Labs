@@ -10,9 +10,9 @@ namespace warcraft
     {
         const int cost = 400;
         bool isWorking;
-        public static int upgradeDamage { get { return upgradeDamage; } private set { upgradeDamage = value; } }
-        public static int upgradeArmor { get { return upgradeArmor; } private set { upgradeArmor = value; } }
-        public static int upgradeBow { get { return upgradeBow; } private set { upgradeBow = value; } }
+        public static int upgradeDamage;
+        public static int upgradeArmor;
+        public static int upgradeBow;
 
         public BlackSmith()
         {
