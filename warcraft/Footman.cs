@@ -9,6 +9,7 @@ namespace warcraft
     class Footman : Unit
     {
         public static List<Footman> Footmans = new List<Footman>();
+        public delegate void HealthChangedDelegate();
 
         public const int Health = 60;
         private const int WalkedSpeed = 40;
@@ -39,7 +40,7 @@ namespace warcraft
             }
             else
             {
-                this.damage = Footman.Damage;
+                this.damage = Footman.Damage + 5 * BlackSmith.upgradeDamage;
             }
         }
         public override void GetInfo()
@@ -47,5 +48,7 @@ namespace warcraft
             base.GetInfo();
             Console.WriteLine($"armor: {this.armor}");
         }
+
+        public event HealthChangedDelegate HealthChangedEvent;
     }
 }
