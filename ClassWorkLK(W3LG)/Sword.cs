@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClassWorkLK_W3LG_
 {
-    internal class Peasant : Unit
+    internal class Sword : Weapon 
     {
-        public static int health = 400;
         public static int damage = 20;
-        public static int defense = 5;
+        public Sword() : base(damage, "Sword")
+        {
 
-        public Peasant () : base(health, damage, defense, "Peasant") { }
+        }        
     }
 }

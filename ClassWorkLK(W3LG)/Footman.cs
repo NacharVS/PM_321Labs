@@ -8,12 +8,19 @@ namespace ClassWorkLK_W3LG_
 {
     internal class Footman : Unit
     {
-        public bool IsInRage { get; set; } 
-        public Footman() : base(200, 50, "Footman") { }
+        public static int health = 2000;
+        public static int damage = 50;
+        public static int defense = 10;
 
-        public override void ReceiveDamage(int damage)
+        public bool IsInRage { get; set; } 
+        public Footman() : base(health, damage, defense, "Footman") 
         {
-            base.ReceiveDamage(damage);
+            this.Weapon = new Sword();
+            this.Armor = new ChainMail();
+        }
+
+        /*public void Rage(int damage)
+        {
             if (this.Health < this.MaxHealth * 0.4 && !this.IsInRage)
             {
                 Console.WriteLine($"\n{this.Name} is in rage\n");
@@ -26,6 +33,6 @@ namespace ClassWorkLK_W3LG_
                 this.IsInRage = false;
                 this.Damage = this.BaseDamage;
             }
-        }
+        }*/
     }
 }
