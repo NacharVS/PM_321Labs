@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Labs320
 {
-    internal class TestClass
+    internal class TestClass : Interface1
     {
         public delegate void HealthChangedDelegate(int healthValue, int maxHealthValue);   
         
@@ -33,11 +33,18 @@ namespace Labs320
             }
         }
 
+        public int Number { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         public void TakeDamage(int damage)
         {
             Health -= damage;            
         }
 
+        public void SomeACtion()
+        {
+            throw new NotImplementedException();
+        }
 
         public event HealthChangedDelegate HealthChangedEvent;
     }
