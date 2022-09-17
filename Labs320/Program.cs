@@ -2,16 +2,7 @@
 using Labs320;
 using Labs320.IntefacesLab;
 
-IWeapon weapon = new Shotgun();
-weapon.ShowInfo();
-
-weapon.SingleShoot();
-weapon = new Machinegun();
-weapon.SingleShoot();
-IAutomaticWeapon weapon2 = new Machinegun();
-weapon2.MultiShoot();
-
-
+MongoExamples.Find("Billy");
 
 static void Info(int value)
 {

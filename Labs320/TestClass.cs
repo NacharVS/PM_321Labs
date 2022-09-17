@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Labs320
 {
-    internal class TestClass : Interface1
+    internal class TestClass 
     {
         public delegate void HealthChangedDelegate(int healthValue, int maxHealthValue);   
         
