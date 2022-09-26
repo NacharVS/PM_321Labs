@@ -42,5 +42,13 @@ namespace Labs320
 
 
         }
+
+        public static void ReplaceByName(string name, User user1)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("Examples321");
+            var collection = database.GetCollection<User>("Users");
+            collection.ReplaceOne(x => x.Name == name, user1);
+        }
     }
 }

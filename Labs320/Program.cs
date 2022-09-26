@@ -2,7 +2,12 @@
 using Labs320;
 using Labs320.IntefacesLab;
 
-MongoExamples.Find("Billy");
+User user = new User("Billy","billy@mail.ru", 44 );
+user.AddItem(new Item("Pen", 5));
+user.AddItem(new Item("Eraiser", 1));
+user.AddItem(new Item("Pencil", 3));
+
+MongoExamples.ReplaceByName("Billy", user);
 
 static void Info(int value)
 {
