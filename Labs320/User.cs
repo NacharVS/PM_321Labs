@@ -38,6 +38,9 @@ namespace Labs320
         [BsonIgnoreIfDefault]
         public int DriverCard { get; set; }
 
+        [BsonIgnoreIfDefault]
+        public int MilitaryTicket { get; set; }
+
         [BsonIgnoreIfNull]
         List<Item> Items { get; set; }
 
