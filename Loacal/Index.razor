@@ -1,0 +1,49 @@
+﻿@page "/"
+@inject SingletonService fasdfsdf
+@inject IJSRuntime jsRuntime
+
+
+@using BlazorApp7.Data
+<PageTitle>Index</PageTitle>
+
+
+
+<input class="alert-info" @bind-value="_keyValue"></input>
+<input class="alert-info" @bind-value="_saveString"></input>
+@*<button class="btn btn-danger" @onclick=service.UploadImageToDb>Upload</button>*@
+<button class="btn btn-danger" @onclick=service.DownloadToLocal>Download</button>
+
+<InputFile OnChange="LoadFiles" multiple />
+
+Welcome to your new app.
+
+@code{
+    [Inject] FileSystemService service { get; set; }
+    private string _keyValue = string.Empty;
+    private string _saveString= string.Empty;
+    private string _string = string.Empty;
+
+    private List<IBrowserFile> _loadedFiles = new();
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        foreach (var file in e.GetMultipleFiles(e.FileCount))
+        {
+                _loadedFiles.Add(file);
+                Stream stream = file.OpenReadStream();
+                await service.UploadImageToDb(stream);
+                stream.Dispose();
+        }
+
+    }
+
+    protected override void OnInitialized()
+    {
+        
+    }
+
+ 
+
+
+
+}
