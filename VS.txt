@@ -1,0 +1,8 @@
+var tempShoppingsCards = ConnectionDB.DB.ShoppingsCards.Where(x => x.id_User == ConnectionDB.user.id_User).FirstOrDefault();
+            var tempProducts_ShoppingsCards_1 = ConnectionDB.DB.Products_ShoppingsCards.Where(x => x.id_Product == product.id_Product).FirstOrDefault();
+            Products_ShoppingsCards tempProducts_ShoppingsCards_2 = null;
+            if (tempProducts_ShoppingsCards_1 != null)
+            {
+                tempProducts_ShoppingsCards_2 = ConnectionDB.DB.Products_ShoppingsCards.Where(x => x.id_Product == product.id_Product
+                  && x.id_ShoppingCard == tempShoppingsCards.id_ShoppingCard).FirstOrDefault();
+            }
