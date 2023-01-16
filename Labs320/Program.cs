@@ -2,27 +2,26 @@
 using Labs320;
 using Labs320.IntefacesLab;
 
-MongoExamples.TestMethod();
-
-
-
-static void Info(int value)
+var t = Task.Run(() =>
 {
-    Console.WriteLine($"Health Value - {value}");
-}
+    for (int i = 0; i < 10; i++)
+    {
+        Console.Write("#");
+        Thread.Sleep(500);
+    }
+});
 
-static void InfoExtended(int value, int val2)
+for (int i = 0; i < 5; i++)
 {
-    Console.WriteLine($"Health Value - {value} Max - {val2}");
+    Console.Write("*");
+    Thread.Sleep(500);
 }
+Task.WaitAll(t);
 
-static void Rage()
+
+
+
+static void Sum(int a, int b)
 {
-    Console.WriteLine("Rage is activated!");
+    Console.WriteLine(a + b);
 }
-
-static void Adrenaline()
-{
-    Console.WriteLine("Opa opa adrenaline!111");
-}
-
